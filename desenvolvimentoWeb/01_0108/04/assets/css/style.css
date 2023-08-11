@@ -1,0 +1,14 @@
+header{
+    height: 10vh;
+    background-color: #28282a;
+    display: flex;
+
+
+}
+.logo img{
+    width: 20vh;
+}
+.menus{
+    background-color: aliceblue;
+    display: flex;
+}
