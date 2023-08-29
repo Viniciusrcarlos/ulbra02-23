@@ -2,5 +2,4 @@
 
 /database/mysql/*
 /database/logs/*
-/www/*
 !/www/info.php
