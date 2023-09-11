@@ -13,31 +13,8 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Meu site</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/<?php echo FOLDER;?>">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/<?php echo FOLDER;?>/?controller=Estudante&acao=listar">Estudantes</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/<?php echo FOLDER;?>/?controller=Professor&acao=listar">Professores</a>
-              </li>
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
-        </div>
-    </nav>
+
+  <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/'. FOLDER .'/view/navbar.php'; ?>
 
     <div class="container">
         <div class="row text-center">
@@ -49,7 +26,7 @@
         </div>
 
         <br>
-        <a href="http://localhost:8081/aula3/?controller=Professor&acao=salvar" class="btn btn-success">Cadastrar Professor</a>
+        <a href="http://localhost:8081/<?php echo FOLDER; ?>/?controller=Professor&acao=salvar" class="btn btn-success">Cadastrar Professor</a>
         <br>
         <br>
 
@@ -59,6 +36,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Idade</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -67,6 +45,10 @@
                         <td><?php echo $professorAtual['id']; ?></td>
                         <td><?php echo $professorAtual['nome']; ?></td>
                         <td><?php echo $professorAtual['idade']; ?></td>
+                        <td>
+                          <a href="/<?php echo FOLDER; ?>?controller=Professor&acao=editar&id=<?php echo $professorAtual['id']; ?>" class="btn btn-primary">Editar</a>
+                          <a href="/<?php echo FOLDER; ?>?controller=Professor&acao=excluir&id=<?php echo $professorAtual['id']; ?>" class="btn btn-primary">Excluir</a>
+                        </td>
                     </tr>
                 <?php } ?>
             </tbody>
