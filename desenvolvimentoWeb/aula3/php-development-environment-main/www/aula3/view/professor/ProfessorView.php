@@ -12,7 +12,7 @@
 
 </head>
 
-<body>
+<body class="bg-dark">
 
   <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/'. FOLDER .'/view/navbar.php'; ?>
 
