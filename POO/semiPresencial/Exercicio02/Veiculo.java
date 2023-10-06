@@ -6,7 +6,7 @@ public class Veiculo {
     private double ano;
 
     boolean on = false;
-
+    
     public String getMarca() {
         return marca;
     }
