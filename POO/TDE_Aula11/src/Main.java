@@ -1,23 +1,28 @@
 public class Main {
     public static void main(String[] args) {
 
-        Banco banco = new Banco("Sicredi");
+        Banco b1 = new Banco("Santander");
 
         Conta c1 = new Conta();
         Conta c2 = new Conta();
-        Conta c3 = new Conta();
 
-        c1.depositar(2000);
-        c2.depositar(1500);
-        c3.depositar(1000);
+        c1.depositar(1200);
 
-        banco.adicionarConta(c1);
-        banco.adicionarConta(c2);
-        banco.adicionarConta(c3);
+        b1.adicionarConta(c1);
+        b1.adicionarConta(c2);
 
-        System.out.println(banco.consultarSaldo(c1));
-        System.out.println(banco.consultarSaldo(c2));
-        System.out.println(banco.consultarSaldo(c3));
+        b1.depositar(c1, 200);
+        b1.sacar(c1, 100);
+
+        System.out.println(b1.consultarSaldo(c1));
+
+        
+
+
+
+
+
+
 
 
 

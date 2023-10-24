@@ -12,6 +12,7 @@ public class Banco {
     public void adicionarConta (Conta conta) {
         this.contas.add(conta);
     }
+
     public double consultarSaldo(Conta conta) {
         for (int i=0; i < contas.size(); i++) {
             if (this.contas.get(i).getNumeroDaConta() == conta.getNumeroDaConta()) {
@@ -20,6 +21,24 @@ public class Banco {
         }
         return 0.0;
     }
+
+    public void depositar(Conta conta, int valor){
+        for (int i=0; i < contas.size(); i++) {
+            if (this.contas.get(i).getNumeroDaConta() == conta.getNumeroDaConta()) {
+                conta.depositar(valor);
+            }
+        }
+    }
+
+    public void sacar(Conta conta, int valor){
+        for (int i=0; i < contas.size(); i++) {
+            if (this.contas.get(i).getNumeroDaConta() == conta.getNumeroDaConta()) {
+                conta.sacar(valor);
+            }
+        }
+    }
+
+
 
 
 }

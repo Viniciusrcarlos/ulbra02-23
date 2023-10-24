@@ -8,11 +8,26 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/movie')]
 class MovieController extends AbstractController
 {
+    #[Route('/', name: 'new_movie', methods: ["POST"])]
+    public function new(EntityManagerInterface $em, Request $request) 
+    {
+        $parametros = json_decode($request->getContent(),true);
+        $movie = new Movie();
+        $movie->setDescription($parametros["description"]);
+        $movie->setTitle($parametros["title"]);
+        $em->persist($movie);
+        $em->flush();
+
+        return $this->json(["Saved"]);
+
+    }
+
     #[Route('/', name: 'get_all_movies')]
     public function index(MovieRepository $movieRepository): JsonResponse
     {
@@ -20,16 +35,30 @@ class MovieController extends AbstractController
         return $this->json($movies);
     }
 
-    #[Route('/new', name: 'new_movie')]
-    public function new(EntityManagerInterface $em) 
+    #[Route('/{id}', name: 'delete_movie', methods:["DELETE"])]
+    public function delete(EntityManagerInterface $em, int $id): JsonResponse
     {
-        $movie = new Movie();
-        $movie->setDescription("Qualquer coisa...");
-        $movie->setTitle("Qualquer coisa...");
+        $movieRepository = $em->getRepository(Movie::class);
+        $movie  = $movieRepository->find($id);
+        if (is_null($movie)){
+            return $this->json("Movie already removed");
+        }
+        $em->remove($movie);
+        $em->flush();
+        return $this->json("Removed");
+    }
+
+    #[Route('/{id}', name: 'edit_movie', methods:["PUT"])]
+    public function edit(EntityManagerInterface $em, int $id, Request $request): JsonResponse
+    {
+        $parametros = json_decode($request->getContent(),true);
+        $movieRepository = $em->getRepository(Movie::class);
+        $movie  = $movieRepository->find($id);
+        $movie->setDescription($parametros["description"]);
+        $movie->setTitle($parametros["title"]);
         $em->persist($movie);
         $em->flush();
-
-        return $this->json(["Savage"]);
-
+        return $this->json("Updated");
     }
+    
 }
