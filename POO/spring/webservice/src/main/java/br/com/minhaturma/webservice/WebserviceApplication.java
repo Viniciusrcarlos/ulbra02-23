@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WebserviceApplication {
 
 	@GetMapping
-	public String qualquer (@RequestParam {
+	public String qualquer (@RequestParam) {
 		return "Hello World";
 	}
 
