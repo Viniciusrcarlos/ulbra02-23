@@ -1,0 +1,8 @@
+[{
+  "_id": {
+    "$oid": "653c57aa1aeaad55307b767c"
+  },
+  "idRestaurante": "653c45178b3a8fc7adecfda8",
+  "idPedido": "653c56d01aeaad55307b7670",
+  "idCLiente": "653c54381aeaad55307b7644"
+}]

@@ -1,0 +1,13 @@
+[{
+  "_id": {
+    "$oid": "653c54381aeaad55307b7644"
+  },
+  "id": 1,
+  "nome": "Claudio",
+  "rua": "Borges de Medeiros",
+  "numero": 1800,
+  "bairro": "Centro",
+  "cidade": "Torres",
+  "telefone": 998383744,
+  "meioDePagamento": "Cartao de credito"
+}]

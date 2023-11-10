@@ -1,0 +1,86 @@
+[{
+  "_id": {
+    "$oid": "653c4b668b3a8fc7adecfdde"
+  },
+  "restauranteID": "653c45178b3a8fc7adecfda8",
+  "name": "BBQ beef",
+  "description": "Pizza coberta com molho barbecue, queijo e coberta com carne bovina",
+  "value": 12.89
+},
+{
+  "_id": {
+    "$oid": "653c4b668b3a8fc7adecfde1"
+  },
+  "restauranteID": "653c45178b3a8fc7adecfda8",
+  "name": "Chicken Bali",
+  "description": "Molho de tomate, queijo, frango grelhado, abacaxi e cogumelos",
+  "value": 16.9
+},
+{
+  "_id": {
+    "$oid": "653c4b668b3a8fc7adecfddf"
+  },
+  "restauranteID": "653c45178b3a8fc7adecfda8",
+  "name": "Veggie Supreme",
+  "description": "Pizza coberta com molho de tomate, queijo e coberturas vegetais",
+  "value": 13
+},
+{
+  "_id": {
+    "$oid": "653c4b668b3a8fc7adecfddd"
+  },
+  "restauranteID": "653c45178b3a8fc7adecfda8",
+  "name": "BBQ Chicken",
+  "description": "Pizza coberta com molho barbecue, queijo e frango grelhado",
+  "value": 12.45
+},
+{
+  "_id": {
+    "$oid": "653c4b668b3a8fc7adecfde0"
+  },
+  "restauranteID": "653c45178b3a8fc7adecfda8",
+  "name": "BBQ Mega",
+  "description": "Molho barbecue, frango, almondegas, linguica defumada e calabresa",
+  "value": 18.78
+},
+{
+  "_id": {
+    "$oid": "653c4df88b3a8fc7adecfdea"
+  },
+  "restauranteID": "653c45178b3a8fc7adecfda8",
+  "name": "Salata",
+  "description": "Saborosa",
+  "aditional": "Greek-wedge",
+  "value": 20.34
+},
+{
+  "_id": {
+    "$oid": "653c4df88b3a8fc7adecfdeb"
+  },
+  "restauranteID": "653c45178b3a8fc7adecfda8",
+  "name": "Asas de frango",
+  "description": "Saborosa",
+  "tamanho": "16pcs",
+  "value": 20.34
+},
+{
+  "_id": {
+    "$oid": "653c4df88b3a8fc7adecfdec"
+  },
+  "restauranteID": "653c45178b3a8fc7adecfda8",
+  "name": "Refrigerante",
+  "description": "Saboroso",
+  "flavor": "Coca-Cola",
+  "value": 20.34
+},
+{
+  "_id": {
+    "$oid": "653c4e568b3a8fc7adecfdee"
+  },
+  "restauranteID": "653c45178b3a8fc7adecfda8",
+  "name": "Kings Deal",
+  "description": "Qualquer pizza media classica + uma pizza de chocolate + uma bebida pet",
+  "aditional": "BBQ Beef",
+  "size": "grande",
+  "value": 20.34
+}]

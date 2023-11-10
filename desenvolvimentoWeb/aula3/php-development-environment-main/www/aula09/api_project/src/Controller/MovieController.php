@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Director;
 use App\Entity\Movie;
 use App\Repository\MovieRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,10 +18,13 @@ class MovieController extends AbstractController
     #[Route('/', name: 'new_movie', methods: ["POST"])]
     public function new(EntityManagerInterface $em, Request $request) 
     {
+        $directorRepository = $em->getRepository(Director::class);
         $parametros = json_decode($request->getContent(),true);
+        $director = $directorRepository->find($parametros["director"]);
         $movie = new Movie();
         $movie->setDescription($parametros["description"]);
         $movie->setTitle($parametros["title"]);
+        $movie->setDirector($director);
         $em->persist($movie);
         $em->flush();
 
