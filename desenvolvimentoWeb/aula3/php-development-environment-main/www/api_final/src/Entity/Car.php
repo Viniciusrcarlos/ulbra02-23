@@ -4,9 +4,10 @@ namespace App\Entity;
 
 use App\Repository\CarRepository;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
-class Car
+class Car implements JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -62,4 +63,14 @@ class Car
 
         return $this;
     }
-}
+
+    public function jsonSerialize()
+    {
+        return [
+            "id" => $this->getId(),
+            "model" => $this->getModel(),
+            "plate" => $this->getPlate(),
+            "Owner" => $this->getOwner(),
+        ];
+    }
+} 
