@@ -25,5 +25,8 @@ public class ClienteController {
 
     }
 
-    
+    @GetMapping
+    public void getAllClients() {
+        service.getAllClients();
+    }
 }

@@ -6,10 +6,7 @@ import com.ulbra.inicioBanco.entities.Cliente;
 import com.ulbra.inicioBanco.services.ClienteService;
 import jakarta.persistence.PostRemove;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/clientes")
@@ -25,7 +22,13 @@ public class ClienteController {
     @PostMapping
     public ClienteDTO createCliente(@RequestBody ClienteDTO bodyRequest) {
         this.service.createCliente(bodyRequest);
-
         return bodyRequest;
     }
+
+    @GetMapping
+    public ClienteDTO getAllClients() {
+        this.serv
+    }
+
+
 }

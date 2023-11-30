@@ -6,6 +6,9 @@ import com.ulbra.inicioBanco.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ClienteService {
 
@@ -20,5 +23,9 @@ public class ClienteService {
         Cliente clienteDtoToCliente = new Cliente(cliente.getNome(), cliente.getIdade(), cliente.getProfissao());
         Cliente resultadoSalvo = this.repository.save(clienteDtoToCliente);
         return new ClienteDTO(resultadoSalvo.getNome(), resultadoSalvo.getIdade(), resultadoSalvo.getProfissao());
+    }
+
+    public  getAllClients() {
+        return repository.findAll();
     }
 }
