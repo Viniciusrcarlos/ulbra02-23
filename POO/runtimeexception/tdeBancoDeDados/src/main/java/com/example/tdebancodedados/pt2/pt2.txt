@@ -1,0 +1,23 @@
+CREATE TABLE alunos ( id_aluno INT PRIMARY KEY, nome VARCHAR(50), idade INT, curso VARCHAR(50) );
+
+INSERT INTO alunos VALUES (1, 'João', 20, 'Engenharia'),
+(2, 'Maria', 22, 'Ciência da Computação'),
+(3, 'Carlos', 21, 'Medicina');
+
+CREATE TABLE notas ( id_aluno INT, disciplina VARCHAR(50), nota INT, FOREIGN KEY (id_aluno) REFERENCES alunos(id_aluno) );
+
+INSERT INTO notas VALUES (1, 'Matemática', 85),
+(1, 'Física', 78),
+(2, 'Matemática', 92),
+(2, 'Física', 88),
+(3, 'Matemática', 75),
+(3, 'Física', 80);
+
+CREATE VIEW vw_notas_alunos AS
+SELECT a.nome AS nome_aluno, n.disciplina, n.nota
+FROM alunos a
+JOIN notas n ON a.id_aluno = n.id_aluno;
+
+
+SELECT * FROM vw_notas_alunos;
+
