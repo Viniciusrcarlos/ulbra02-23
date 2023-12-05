@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class AutorService {
 
-    AutorRepository autorRepository;
+    private AutorRepository autorRepository;
 
     @Autowired
     public AutorService(AutorRepository repository) {
@@ -18,6 +18,6 @@ public class AutorService {
     }
 
     public List<Autor> getAllAltores() {
-        return this.autorRepository.save();
+        return this.autorRepository.findAll();
     }
 }

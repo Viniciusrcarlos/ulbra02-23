@@ -1,17 +1,29 @@
 package com.example.dto.controllers;
 
+import com.example.dto.entities.Autor;
+import com.example.dto.services.AutorService;
+import jakarta.persistence.Table;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.support.Repositories;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/autores")
+@RequestMapping("/autor")
 public class AutorController {
-    Repositories repositories;
+
+    private AutorService service;
+
+    @Autowired
+    public AutorController(AutorService service) {
+        this.service = service;
+    }
 
     @GetMapping
-    public void getAllAltores() {
-        
+    public List<Autor> getAllAltores() {
+        return this.service.getAllAltores();
     }
 }
