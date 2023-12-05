@@ -42,16 +42,20 @@ public class ClienteController {
         return clienteService.addClient(cliente);
     }
 
-    // vai trazer um cliente com um ID exp
+    // vai trazer atualizar um cliente com um ID exp
     @PutMapping("/{id}")
-    public Cliente getClienteById(@PathVariable int id, @RequestBody Cliente updatedCliente) {
-        return clienteService.updateClient(id, updatedCliente);
+    public String getClienteById(@PathVariable long id, @RequestBody Cliente updatedCliente) {
+        clienteService.updateClient(id, updatedCliente);
+
+        return "Cliente atualizado";
     }
 
     // deletar cliente
     @DeleteMapping("/{id}")
-    public boolean deleteClient(@PathVariable int id) {
-        return clienteService.deleteClient(id);
+    public String deleteClient(@PathVariable long id) {
+        clienteService.deleteClient(id);
+
+        return "Cliente deletado!";
     }
 
 

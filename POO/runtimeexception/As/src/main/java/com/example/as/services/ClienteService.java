@@ -2,6 +2,7 @@ package com.example.as.services;
 
 import com.example.as.entities.Cliente;
 import com.example.as.repositories.ClienteRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,7 @@ public class ClienteService {
         this.repository = repository;
     }
 
-    private ArrayList<Cliente> clientes = new ArrayList<>();
-    private int proximoId = 1;
+
 
     //retorna uma lista com todos os clientes
     public List<Cliente> getAllClients() {
@@ -34,28 +34,30 @@ public class ClienteService {
     }
 
     //Atualiza um cliente com base no ID com os dados fornecidos
-    public Cliente updateClient(int id, Cliente updatedCliente) {
-        
+    public String updateClient(long id, Cliente updatedCliente) {
+        Cliente atualizar = repository.findById(id).orElse(null);
+        BeanUtils.copyProperties(updatedCliente, atualizar, "id");
+        repository.save(atualizar);
+        return "Atualizado com sucesso!!";
     }
 
-    public boolean deleteClient(int id) {
-        return clientes.removeIf(cliente -> Objects.equals(cliente.getId(), id));
+    public String deleteClient(long id) {
+        Cliente cliente = repository.findById(id).orElse(null);
+        repository.delete(cliente);
+
+        return "Cliente removido";
     }
 
     // Retorna um cliente por ID
     public Cliente getClienteById(long id) {
-        return repository.findById(id);
+        return repository.findById(id).orElse(null);
     }
 
     //Retorna um cliente com uma idade específica
     public List<Cliente> getClientsByIdade(int idade) {
-        List<Cliente> clienteByIdade = new ArrayList();
-        for (Cliente cliente : clientes) {
-            if (cliente.getIdade() == idade) {
-                clienteByIdade.add(cliente);
-            }
-        }
-        return clienteByIdade;
+        List<Cliente> lista = repository.findByIdade(idade);
+
+        return lista;
     }
 
 
