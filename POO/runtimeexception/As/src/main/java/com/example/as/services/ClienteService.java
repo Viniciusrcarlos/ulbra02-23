@@ -27,13 +27,13 @@ public class ClienteService {
         return repository.findAll();
     }
 
-    //Add um novo cliente a lista e add um ID unico a ele
+    //adiciona um cliente
     public Cliente addClient(Cliente cliente) {
         repository.save(cliente);
         return cliente;
     }
 
-    //Atualiza um cliente com base no ID com os dados fornecidos
+    //atualiza o cliente com o ID fornecido
     public String updateClient(long id, Cliente updatedCliente) {
         Cliente atualizar = repository.findById(id).orElse(null);
         BeanUtils.copyProperties(updatedCliente, atualizar, "id");
@@ -41,6 +41,7 @@ public class ClienteService {
         return "Atualizado com sucesso!!";
     }
 
+    //deleta o cliente com o id fornecido
     public String deleteClient(long id) {
         Cliente cliente = repository.findById(id).orElse(null);
         repository.delete(cliente);
@@ -48,12 +49,12 @@ public class ClienteService {
         return "Cliente removido";
     }
 
-    // Retorna um cliente por ID
+    // retorna o cliente pelo id fornecido
     public Cliente getClienteById(long id) {
         return repository.findById(id).orElse(null);
     }
 
-    //Retorna um cliente com uma idade específica
+    //retorna um cliente com a idade fornecida
     public List<Cliente> getClientsByIdade(int idade) {
         List<Cliente> lista = repository.findByIdade(idade);
 
