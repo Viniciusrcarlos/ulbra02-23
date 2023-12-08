@@ -1,11 +1,13 @@
 package com.example.as.controller;
 
+import com.example.as.dtos.ClienteResponseDTO;
 import com.example.as.entities.Cliente;
 import com.example.as.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/cliente")
@@ -20,25 +22,25 @@ public class ClienteController {
 
     //retorna uma lista com todos os clientes  --
     @GetMapping
-    public List<Cliente> getAllClients() {
+    public List<ClienteResponseDTO> getAllClients() {
         return clienteService.getAllClients();
     }
 
     // Retorna um cliente com o id específico
     @GetMapping("/{id}")
-    public Cliente getClienteById(@PathVariable long id) {
+    public List<ClienteResponseDTO> getClienteById(@PathVariable long id) {
         return clienteService.getClienteById(id);
     }
 
     // filtra pela idade
     @GetMapping(params = "idade")
-    public List<Cliente> getClientsByAge(@RequestParam int idade) {
+    public List<ClienteResponseDTO> getClientsByAge(@RequestParam int idade) {
         return clienteService.getClientsByIdade(idade);
     }
 
     // add cliente
     @PostMapping
-    public Cliente addClient(@RequestBody Cliente cliente) {
+    public ClienteResponseDTO addClient(@RequestBody ClienteResponseDTO cliente) {
         return clienteService.addClient(cliente);
     }
 

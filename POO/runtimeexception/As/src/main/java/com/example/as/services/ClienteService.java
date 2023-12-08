@@ -1,6 +1,8 @@
 package com.example.as.services;
 
+import com.example.as.dtos.ClienteResponseDTO;
 import com.example.as.entities.Cliente;
+import com.example.as.exceptions.NotFoundClienteException;
 import com.example.as.repositories.ClienteRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +25,33 @@ public class ClienteService {
 
 
     //retorna uma lista com todos os clientes
-    public List<Cliente> getAllClients() {
-        return repository.findAll();
+    public List<ClienteResponseDTO> getAllClients() {
+        List<ClienteResponseDTO> listaDeClientes = new ArrayList<>();
+        List<Cliente> resultado = this.repository.findAll();
+
+
+
+
+        for(int i = 0; i < resultado.size(); i++) {
+            ClienteResponseDTO dto = new ClienteResponseDTO();
+
+            dto.setNome(resultado.get(i).getNome());
+            dto.setProfissao(resultado.get(i).getProfissao());
+            dto.setIdade(resultado.get(i).getIdade());
+
+            listaDeClientes.add(dto);
+        }
+
+
+
+        return listaDeClientes;
     }
 
     //adiciona um cliente
-    public Cliente addClient(Cliente cliente) {
-        repository.save(cliente);
-        return cliente;
+    public ClienteResponseDTO addClient(ClienteResponseDTO cliente) {
+        Cliente clienteDtoToCliente = new Cliente(cliente.getNome(), cliente.getIdade(), cliente.getProfissao());
+        Cliente resultadoSalvo = this.repository.save(clienteDtoToCliente);
+        return new ClienteResponseDTO(resultadoSalvo.getNome(), resultadoSalvo.getIdade(), resultadoSalvo.getProfissao());
     }
 
     //atualiza o cliente com o ID fornecido
@@ -50,18 +71,49 @@ public class ClienteService {
     }
 
     // retorna o cliente pelo id fornecido
-    public Cliente getClienteById(long id) {
-        return repository.findById(id).orElse(null);
+    public List<ClienteResponseDTO> getClienteById(long id) {
+        List<ClienteResponseDTO> listaDeClientes = new ArrayList<>();
+        List<Cliente> resultado = this.repository.findAll();
+
+
+        for(int i = 0; i < resultado.size(); i++) {
+            if(resultado.get(i).getId() == id) {
+                ClienteResponseDTO dto = new ClienteResponseDTO();
+
+                dto.setNome(resultado.get(i).getNome());
+                dto.setProfissao(resultado.get(i).getProfissao());
+                dto.setIdade(resultado.get(i).getIdade());
+
+                listaDeClientes.add(dto);
+            }
+        }
+
+        if(resultado.get(0) == null) {
+            throw new NotFoundClienteException();
+        }else {
+        return listaDeClientes;
+        }
     }
 
     //retorna um cliente com a idade fornecida
-    public List<Cliente> getClientsByIdade(int idade) {
-        List<Cliente> lista = repository.findByIdade(idade);
+    public List<ClienteResponseDTO> getClientsByIdade(int idade) {
+        List<ClienteResponseDTO> listaDeClientes = new ArrayList<>();
+        List<Cliente> resultado = this.repository.findAll();
 
-        return lista;
+
+        for(int i = 0; i < resultado.size(); i++) {
+            if(resultado.get(i).getIdade() == idade) {
+                ClienteResponseDTO dto = new ClienteResponseDTO();
+
+                dto.setNome(resultado.get(i).getNome());
+                dto.setProfissao(resultado.get(i).getProfissao());
+                dto.setIdade(resultado.get(i).getIdade());
+
+                listaDeClientes.add(dto);
+            }
+        }
+        return listaDeClientes;
     }
-
-
 
 
 

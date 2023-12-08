@@ -1,5 +1,6 @@
 package com.example.as.entities;
 
+import com.example.as.dtos.ClienteResponseDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,4 +20,11 @@ public class Cliente {
     private String nome;
     private int idade;
     private String profissao;
+
+    public Cliente(String nome, int idade, String profissao) {
+        this.nome = nome;
+        this.idade = idade;
+        this.profissao = profissao;
+    }
+
 }
